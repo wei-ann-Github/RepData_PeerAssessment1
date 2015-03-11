@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----  
+# Reproducible Research: Peer Assessment 1
 
 The data in this assignment can be downloaded from the course web site:
 
@@ -21,7 +16,8 @@ The dataset is stored in a comma-separated-value (CSV) file and there are a tota
 
 ## Loading and preprocessing the data
 
-```{r}
+
+```r
 temp <- tempfile()
 download.file("http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip",temp)
 unzip(temp)
@@ -30,15 +26,31 @@ unlink(temp)
 ```
 
 Let's examine the structure of the data
-```{r}
+
+```r
 str(data)
+```
+
+```
+## 'data.frame':	17568 obs. of  3 variables:
+##  $ steps   : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ date    : Factor w/ 61 levels "2012-10-01","2012-10-02",..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ interval: int  0 5 10 15 20 25 30 35 40 45 ...
 ```
 
 The date column of the data has been interpreted as a factor instead of a date. 
 Let's convert the date column from factor to date. Then examine the structure of "data" again.
-```{r}
+
+```r
 data[,2] <- as.POSIXct(data[,2])
 str(data)
+```
+
+```
+## 'data.frame':	17568 obs. of  3 variables:
+##  $ steps   : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ date    : POSIXct, format: "2012-10-01" "2012-10-01" ...
+##  $ interval: int  0 5 10 15 20 25 30 35 40 45 ...
 ```
 The structure of the "date" column is now correct
 
